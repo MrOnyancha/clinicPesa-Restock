@@ -1,0 +1,36 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: cp-pharma
+  namespace: cp-gt
+  labels:
+    app: cp-pharma
+  annotations:
+spec:
+  selector:
+    matchLabels:
+      app: cp-pharma
+  replicas: 2
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 0
+  template:
+    metadata:
+      labels:
+        app: cp-pharma
+    spec:
+      containers:
+        - name: cp-care
+          image: us-docker.pkg.dev/clinicpesa-1/gcr.io/cp-pharma:20250621001_PROD
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 80
+          resources:
+            requests:
+              memory: "64Mi"
+              cpu: "10m"
+            limits:
+              memory: "256Mi"
+              cpu: "500m"

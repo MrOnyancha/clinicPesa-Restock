@@ -1,0 +1,17 @@
+
+FROM nginx:1.19
+
+COPY ./ /usr/share/nginx/html/
+
+USER root
+# RUN ["ls", "/usr/share/nginx/html/images"]
+# RUN ["ls", "/usr/share/nginx/html"]
+#Copy default nginx configuration
+COPY ./nginx-custom.conf /etc/nginx/conf.d/default.conf
+
+# Expose port 80, as Nginx is configured to listen on this port
+EXPOSE 80
+
+# Command to run Nginx when the container starts
+# This command keeps Nginx in the foreground, essential for Docker
+CMD ["nginx", "-g", "daemon off;"]
