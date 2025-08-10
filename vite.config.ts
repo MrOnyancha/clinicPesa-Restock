@@ -6,9 +6,9 @@ import path from 'path';
 export default defineConfig({
   plugins: [react()],
   server: {
-    port: 8080,
+    port: 5000,
     host: true,
-    origin: 'http://localhost:8080',
+    origin: 'http://localhost:5000',
     allowedHosts: [
       'localhost',
       '4464ac9c-b978-4ad6-b692-1a9cb80f4557-00-2e6egi93yz7l2.riker.replit.dev'
